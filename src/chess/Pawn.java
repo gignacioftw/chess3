@@ -10,9 +10,7 @@ public class Pawn extends Piece{
         int rankD = destination.charAt(1) - '0';
 
         // PUT INTO PIECES.JAVA
-        if (rankI > 8 || rankI < 1 || rankD > 8 || rankD < 1){
-            return false;
-        }
+
         
         switch(type){
             case WP:

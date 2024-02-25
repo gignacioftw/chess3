@@ -131,16 +131,15 @@ class Board {
 				}
 			}
 
-			ReturnPiece takenpiece = null;
 			for (ReturnPiece piece : p){
 				String s = piece.toString();
 				String[] sl = s.split(":");
 				if (sl[0].equalsIgnoreCase(secondSquare) && !sl[1].equalsIgnoreCase(firstSquare)){
-					takenpiece = piece;
+					type2 = piece;
 					break;
 				}
 			}
-			p.remove(takenpiece);
+			p.remove(type2);
 			switch (type) {
 				case WP:
 					new Pawn().move(firstSquare, secondSquare, p);
@@ -350,7 +349,12 @@ class Board {
 		boolean desthaspiece = false;
 		if (type2 != null){
 			desthaspiece = true;
+			if (type.name().charAt(0) == type2.name().charAt(0)){
+				return false;
+			}
 		}
+
+		
 
 		switch(type){
 			case WP, BP:

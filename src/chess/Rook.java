@@ -3,13 +3,13 @@ package chess;
 import java.util.ArrayList;
 
 public class Rook extends Piece{
-    public boolean canMove(String p, String m, PieceType type){
-        char fileP = p.charAt(0);
-        int rankP = p.charAt(1) - '0';
-        char fileM = m.charAt(0);
-        int rankM = m.charAt(1) - '0';
+    public boolean canMove(String initial, String destination, PieceType type){
+        char fileI = initial.charAt(0);
+        int rankI = initial.charAt(1) - '0';
+        char fileD = destination.charAt(0);
+        int rankD = destination.charAt(1) - '0';
         
-        if(fileP == fileM || rankP == rankM){
+        if(fileI == fileD || rankI == rankD){
             return true;
         }
         else{

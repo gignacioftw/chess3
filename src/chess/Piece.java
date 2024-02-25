@@ -4,11 +4,16 @@ import java.util.ArrayList;
 
 public abstract class Piece extends ReturnPiece{
 
-    protected boolean canMove(String p, String m, PieceType type, boolean desthaspiece){
-        final char fileP = p.charAt(0);
-        final int rankP = p.charAt(1);
-        final char fileM = m.charAt(0);
-        final int rankM = m.charAt(1);
+    protected boolean canMove(String initial, String destination, PieceType type, boolean desthaspiece){
+        int fileI = initial.charAt(0) - '0';
+        int rankI = initial.charAt(1) - '0';
+        int fileD = destination.charAt(0) - '0';
+        int rankD = destination.charAt(1) - '0';
+
+        if (rankI > 8 || rankI < 1 || rankD > 8 || rankD < 1){
+            return false;
+        }
+
         return false;
     }
 
