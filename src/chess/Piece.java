@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Piece extends ReturnPiece{
 
-    protected boolean canMove(String p, String m, PieceType type){
+    protected boolean canMove(String p, String m, PieceType type, boolean desthaspiece){
         final char fileP = p.charAt(0);
         final int rankP = p.charAt(1);
         final char fileM = m.charAt(0);
@@ -22,8 +22,13 @@ public abstract class Piece extends ReturnPiece{
             if(sl[0].equalsIgnoreCase(p)){
                 piece.pieceRank = m.charAt(1) - '0';
                 piece.pieceFile = PieceFile.values()[x];
+                break;
             }
         }
+    }
+
+    protected void getPosition(){
+        // return
     }
 
     //this is just here idk how im gonna do taking it maybe shoudnt even be here we can think about it

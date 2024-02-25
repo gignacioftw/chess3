@@ -3,28 +3,39 @@ package chess;
 import java.util.ArrayList;
 
 public class Pawn extends Piece{
-    public boolean canMove(String p, String m, PieceType type){
-        char fileP = p.charAt(0);
-        int rankP = p.charAt(1) - '0';
-        char fileM = m.charAt(0);
-        int rankM = m.charAt(1) - '0';
+    public boolean canMove(String initial, String destination, PieceType type, boolean desthaspiece){
+        int fileI = initial.charAt(0) - '0';
+        int rankI = initial.charAt(1) - '0';
+        int fileD = destination.charAt(0) - '0';
+        int rankD = destination.charAt(1) - '0';
+
+        // PUT INTO PIECES.JAVA
+        if (rankI > 8 || rankI < 1 || rankD > 8 || rankD < 1){
+            return false;
+        }
         
         switch(type){
             case WP:
-                if(rankP == 2 && rankM - rankP > 0 && rankM - rankP <= 2 && fileM == fileP){
+                if (rankI == 2 && rankD - rankI > 0 && rankD - rankI <= 2 && fileD == fileI){
                     return true;
                 }
-                else if(rankP != 2 && rankM - rankP == 1 && fileM == fileP){
+                else if (rankI != 2 && rankD - rankI == 1 && fileD == fileI && !desthaspiece){
                     return true;
                 }
-                else{
+                else if (desthaspiece && ((fileD - fileI == 1) || (fileD - fileI == -1)) && rankD - rankI == 1){
+                    return true;
+                }
+                else {
                     return false;
                 }
             case BP:
-                if(rankP == 7 && rankM - rankP < 0 && rankM - rankP >= -2 && fileM == fileP){
+                if(rankI == 7 && rankD - rankI < 0 && rankD - rankI >= -2 && fileD == fileI){
                     return true;
                 }
-                else if(rankP != 7 && rankM - rankP == -1 && fileM == fileP){
+                else if(rankI != 7 && rankD - rankI == -1 && fileD == fileI && !desthaspiece){
+                    return true;
+                }
+                else if (desthaspiece && ((fileD - fileI == 1) || (fileD - fileI == -1)) && rankD - rankI == -1){
                     return true;
                 }
                 else{

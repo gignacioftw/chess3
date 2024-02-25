@@ -62,7 +62,13 @@ public class Chess {
 		/* FOLLOWING LINE IS A PLACEHOLDER TO MAKE COMPILER HAPPY */
 		/* WHEN YOU FILL IN THIS METHOD, YOU NEED TO RETURN A ReturnPlay OBJECT */
 		//Chess.p.message = null;
-		Board.move(p.piecesOnBoard, move);
+		if (Board.move(p.piecesOnBoard, move) == ReturnPlay.Message.ILLEGAL_MOVE){
+			p.message = ReturnPlay.Message.ILLEGAL_MOVE;
+		}
+		else {
+			p.message = null;
+		}
+		
 		return p;
 	}
 	
@@ -108,21 +114,38 @@ class Board {
 	}*/
 	//this should call both canMovePiece and canMoveBoard
 	//like a if(canMovePiece) then if(canMoveBoard), then the piece moves.
-	public static void move(ArrayList<ReturnPiece> p, String move){
+	public static ReturnPlay.Message move(ArrayList<ReturnPiece> p, String move){
 		String[] list = parseMove(move);
 		String firstSquare = list[0];
 		String secondSquare = list[1];
 		PieceType type = null;
+		PieceType type2 = null;
 		
 		if(canMovePiece(move, p)){
 			for(ReturnPiece piece : p){
 				String s = piece.toString();
 				String[] sl = s.split(":");
-				if(sl[0].equalsIgnoreCase(list[0])){
+				if(sl[0].equalsIgnoreCase(firstSquare)){
 					type = piece.pieceType;
+					break;
 				}
 			}
+
+			ReturnPiece takenpiece = null;
+			for (ReturnPiece piece : p){
+				String s = piece.toString();
+				String[] sl = s.split(":");
+				if (sl[0].equalsIgnoreCase(secondSquare) && !sl[1].equalsIgnoreCase(firstSquare)){
+					takenpiece = piece;
+					break;
+				}
+			}
+			p.remove(takenpiece);
 			new Pawn().move(firstSquare, secondSquare, p);
+			return null;
+		}
+		else {
+			return ReturnPlay.Message.ILLEGAL_MOVE;
 		}
 	}
 	
@@ -264,19 +287,35 @@ class Board {
 		String firstSquare = list[0];
 		String secondSquare = list[1];
 		PieceType type = null;
+		PieceType type2 = null;
 
 		
 		for(ReturnPiece piece : p){
 			String s = piece.toString();
 			String[] sl = s.split(":");
-			if(sl[0].equalsIgnoreCase(list[0])){
+			if(sl[0].equalsIgnoreCase(firstSquare)){
 				type = piece.pieceType;
+				break;
 			}
+		}
+
+		for(ReturnPiece piece : p){
+			String s = piece.toString();
+			String[] sl = s.split(":");
+			if(sl[0].equalsIgnoreCase(secondSquare)){
+				type2 = piece.pieceType;
+				break;
+			}
+		}
+
+		boolean desthaspiece = false;
+		if (type2 != null){
+			desthaspiece = true;
 		}
 
 		switch(type){
 			case WP, BP:
-				return new Pawn().canMove(firstSquare, secondSquare, type);
+				return new Pawn().canMove(firstSquare, secondSquare, type, desthaspiece);
 			case WR, BR:
 				return new Rook().canMove(firstSquare, secondSquare, type);
 			case WB, BB:
