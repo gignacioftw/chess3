@@ -135,7 +135,7 @@ class Board {
 				String s = piece.toString();
 				String[] sl = s.split(":");
 				if (sl[0].equalsIgnoreCase(secondSquare) && !sl[1].equalsIgnoreCase(firstSquare)){
-					type2 = piece;
+					type2 = piece.pieceType;
 					break;
 				}
 			}
