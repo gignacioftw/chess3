@@ -3,6 +3,16 @@ package chess;
 import java.util.ArrayList;
 
 public class Queen extends Piece{
+
+    Queen(){}
+    
+
+    Queen(PieceFile file, int rank, PieceType pieceType){
+        this.pieceFile = file;
+        this.pieceRank = rank;
+        this.pieceType = pieceType;
+    }
+
     public boolean canMove(String initial, String destination, PieceType type){
         char fileI = initial.charAt(0);
         int rankI = initial.charAt(1) - '0';

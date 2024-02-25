@@ -4,6 +4,15 @@ import java.util.ArrayList;
 
 public abstract class Piece extends ReturnPiece{
 
+    Piece(){}
+    
+
+    Piece(PieceFile file, int rank, PieceType pieceType){
+        this.pieceFile = file;
+        this.pieceRank = rank;
+        this.pieceType = pieceType;
+    }
+
     protected boolean canMove(String initial, String destination, PieceType type, boolean desthaspiece){
         int fileI = initial.charAt(0) - '0';
         int rankI = initial.charAt(1) - '0';

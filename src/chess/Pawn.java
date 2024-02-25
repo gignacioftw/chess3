@@ -8,9 +8,6 @@ public class Pawn extends Piece{
         int rankI = initial.charAt(1) - '0';
         int fileD = destination.charAt(0) - '0';
         int rankD = destination.charAt(1) - '0';
-
-        // PUT INTO PIECES.JAVA
-
         
         switch(type){
             case WP:
@@ -21,6 +18,10 @@ public class Pawn extends Piece{
                     return true;
                 }
                 else if (desthaspiece && ((fileD - fileI == 1) || (fileD - fileI == -1)) && rankD - rankI == 1){
+                    if (rankD == 8){ //pawn promotion
+
+                    }
+
                     return true;
                 }
                 else {
@@ -34,6 +35,10 @@ public class Pawn extends Piece{
                     return true;
                 }
                 else if (desthaspiece && ((fileD - fileI == 1) || (fileD - fileI == -1)) && rankD - rankI == -1){
+                    if (rankD == 1){ //pawn promotion
+                        
+                    }
+
                     return true;
                 }
                 else{
