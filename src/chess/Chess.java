@@ -141,7 +141,46 @@ class Board {
 				}
 			}
 			p.remove(takenpiece);
-			new Pawn().move(firstSquare, secondSquare, p);
+			switch (type) {
+				case WP:
+					new Pawn().move(firstSquare, secondSquare, p);
+					break;
+				case BP:
+					new Pawn().move(firstSquare, secondSquare, p);
+					break;
+				case WR:
+					new Rook().move(firstSquare, secondSquare, p);
+					break;
+				case BR:
+					new Rook().move(firstSquare, secondSquare, p);
+					break;
+				case WN:
+					new Knight().move(firstSquare, secondSquare, p);
+					break;
+				case BN:
+					new Knight().move(firstSquare, secondSquare, p);
+					break;
+				case WB:
+					new Bishop().move(firstSquare, secondSquare, p);
+					break;
+				case BB: 
+					new Bishop().move(firstSquare, secondSquare, p);
+					break;
+				case WK:
+					new King().move(firstSquare, secondSquare, p);
+					break;
+				case BK:
+					new King().move(firstSquare, secondSquare, p);
+					break;
+				case WQ:
+					new Queen().move(firstSquare, secondSquare, p);
+					break;
+				case BQ:
+					new Queen().move(firstSquare, secondSquare, p);;
+					break;
+				default:
+					break;
+			}
 			return null;
 		}
 		else {

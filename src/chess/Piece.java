@@ -27,10 +27,6 @@ public abstract class Piece extends ReturnPiece{
         }
     }
 
-    protected void getPosition(){
-        // return
-    }
-
     //this is just here idk how im gonna do taking it maybe shoudnt even be here we can think about it
     protected void take(){
 
