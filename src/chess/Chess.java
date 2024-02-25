@@ -131,15 +131,16 @@ class Board {
 				}
 			}
 
+			ReturnPiece takenpiece = null;
 			for (ReturnPiece piece : p){
 				String s = piece.toString();
 				String[] sl = s.split(":");
 				if (sl[0].equalsIgnoreCase(secondSquare) && !sl[1].equalsIgnoreCase(firstSquare)){
-					type2 = piece.pieceType;
+					takenpiece = piece;
 					break;
 				}
 			}
-			p.remove(type2);
+			p.remove(takenpiece);
 			switch (type) {
 				case WP:
 					new Pawn().move(firstSquare, secondSquare, p);
