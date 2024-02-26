@@ -19,11 +19,10 @@ public class Queen extends Piece{
         int fileD = destination.charAt(0) - '0';
         int rankD = destination.charAt(1) - '0';
         
-        if(fileI == fileD || rankI == rankD){
-            moved = true;
+        if (fileI == fileD || rankI == rankD ||  Math.abs(fileI-fileD) == Math.abs(rankI-rankD) ){
             return true;
         }
-        else{
+        else {
             return false;
         }
     }

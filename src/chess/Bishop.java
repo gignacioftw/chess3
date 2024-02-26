@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.ArrayList;
+import java.math.*;
 
 public class Bishop extends Piece{
 
@@ -19,9 +20,12 @@ public class Bishop extends Piece{
         int fileD = destination.charAt(0) - '0';
         int rankD = destination.charAt(1) - '0';
 
-        if(rankD - rankI >= 1 && fileD - fileI >= 1 || rankD - rankI <= -1 && fileD - fileI <= -1
-            || rankD - rankI >= 1 && fileD - fileI <= 1 || rankD - rankI <= -1 && fileD - fileI >= 1){                    
-                    return true;
+        // if(rankD - rankI >= 1 && fileD - fileI >= 1 || rankD - rankI <= -1 && fileD - fileI <= -1
+        //     || rankD - rankI >= 1 && fileD - fileI <= 1 || rankD - rankI <= -1 && fileD - fileI >= 1){                    
+        //             return true;
+        // }
+        if( Math.abs(fileI-fileD) == Math.abs(rankI-rankD) ){
+            return true;
         }
         else{
             return false;

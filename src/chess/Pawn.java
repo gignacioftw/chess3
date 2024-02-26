@@ -18,10 +18,6 @@ public class Pawn extends Piece{
                     return true;
                 }
                 else if (desthaspiece && ((fileD - fileI == 1) || (fileD - fileI == -1)) && rankD - rankI == 1){
-                    if (rankD == 8){ //pawn promotion
-
-                    }
-
                     return true;
                 }
                 else {
@@ -35,10 +31,6 @@ public class Pawn extends Piece{
                     return true;
                 }
                 else if (desthaspiece && ((fileD - fileI == 1) || (fileD - fileI == -1)) && rankD - rankI == -1){
-                    if (rankD == 1){ //pawn promotion
-                        
-                    }
-
                     return true;
                 }
                 else{
