@@ -5,6 +5,15 @@ import java.util.ArrayList;
 public abstract class Piece extends ReturnPiece{
 
     Piece(){}
+
+    int fileI;
+    int rankI;
+    int fileD;
+    int rankD;
+
+        // if (rankI > 8 || rankI < 1 || rankD > 8 || rankD < 1){
+        //     return false;
+        // }
     
 
     Piece(PieceFile file, int rank, PieceType pieceType){
@@ -13,18 +22,11 @@ public abstract class Piece extends ReturnPiece{
         this.pieceType = pieceType;
     }
 
-    protected boolean canMove(String initial, String destination, PieceType type, boolean desthaspiece){
-        int fileI = initial.charAt(0) - '0';
-        int rankI = initial.charAt(1) - '0';
-        int fileD = destination.charAt(0) - '0';
-        int rankD = destination.charAt(1) - '0';
+    protected abstract boolean canMove(String initial, String destination, PieceType type, boolean desthaspiece);
+        
 
-        if (rankI > 8 || rankI < 1 || rankD > 8 || rankD < 1){
-            return false;
-        }
-
-        return false;
-    }
+        // return true;
+    
 
     //moves the piece
     protected void move(String p, String m, ArrayList<ReturnPiece> l){

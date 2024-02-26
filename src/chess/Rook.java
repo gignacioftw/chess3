@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Rook extends Piece{
     
+    private boolean moved = false;
     Rook(){}
     
 
@@ -13,13 +14,14 @@ public class Rook extends Piece{
         this.pieceType = pieceType;
     }
 
-    public boolean canMove(String initial, String destination, PieceType type){
-        char fileI = initial.charAt(0);
+    public boolean canMove(String initial, String destination, PieceType type, boolean desthaspiece){
+        int fileI = initial.charAt(0) - '0';
         int rankI = initial.charAt(1) - '0';
-        char fileD = destination.charAt(0);
+        int fileD = destination.charAt(0) - '0';
         int rankD = destination.charAt(1) - '0';
         
         if(fileI == fileD || rankI == rankD){
+            moved = true;
             return true;
         }
         else{

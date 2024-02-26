@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class King extends Piece{
 
+    private boolean moved = false;
     King(){}
     
 
@@ -13,18 +14,23 @@ public class King extends Piece{
         this.pieceType = pieceType;
     }
     
-    public boolean canMove(String initial, String destination, PieceType type){
-        char fileI = initial.charAt(0);
+    public boolean canMove(String initial, String destination, PieceType type, boolean desthaspiece){
+        int fileI = initial.charAt(0) - '0';
         int rankI = initial.charAt(1) - '0';
-        char fileD = destination.charAt(0);
+        int fileD = destination.charAt(0) - '0';
         int rankD = destination.charAt(1) - '0';
         
-        if(fileD - fileI == 1 || rankD - rankI == 1 || fileD - fileI == -1 || rankD - rankI == -1){
+        if(!moved && fileD - fileI <= 2 && rankD - rankI <= 2 && fileD - fileI >= -2 && rankD - rankI >= -2){
+            moved = true;
             return true;
         }
         else{
             return false;
         }            
+    }
+
+    public boolean getMoved(){
+        return this.moved;
     }
     
     public void move(String p, String m, ArrayList<ReturnPiece> l){

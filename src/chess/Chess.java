@@ -213,8 +213,33 @@ class Board {
 				case WB, BB:
 					new Bishop().move(firstSquare, secondSquare, p);
 					break;
-				case WK, BK:
-					new King().move(firstSquare, secondSquare, p);
+				case WK: // make sure that rook is unmoved also
+					if (!hasTile("f1", p) && !hasTile("g1", p) && secondSquare.equalsIgnoreCase("g1")){
+						new King().move(firstSquare, secondSquare, p);
+						new Rook().move("h1", "f1", p);
+					}
+					else if (!hasTile("d1", p) && !hasTile("c1", p) && !hasTile("b1", p) && secondSquare.equalsIgnoreCase("c1")){
+						new King().move(firstSquare, secondSquare, p);
+						new Rook().move("a1", "d1", p);
+					}
+					else {
+						new King().move(firstSquare, secondSquare, p);
+					}
+
+					break;
+				case BK:
+					if (!hasTile("f8", p) && !hasTile("g8", p) && secondSquare.equalsIgnoreCase("g8")){
+						new King().move(firstSquare, secondSquare, p);
+						new Rook().move("h8", "f8", p);
+					}
+					else if (!hasTile("d8", p) && !hasTile("c8", p) && !hasTile("b8", p) && secondSquare.equalsIgnoreCase("c8")){
+						new King().move(firstSquare, secondSquare, p);
+						new Rook().move("a8", "d8", p);
+					}
+					else {
+						new King().move(firstSquare, secondSquare, p);
+					}
+
 					break;
 				case WQ, BQ:
 					new Queen().move(firstSquare, secondSquare, p);
@@ -228,6 +253,30 @@ class Board {
 		else {
 			return ReturnPlay.Message.ILLEGAL_MOVE;
 		}
+	}
+
+	public static ReturnPiece getPiece(String tile){
+		ReturnPiece z;
+		for(ReturnPiece piece : p){
+			String s = piece.toString();
+			String[] sl = s.split(":");
+			if(sl[0].equalsIgnoreCase(tile)){
+				z = piece;
+			}
+		}
+		return z;
+	}
+
+	public static boolean hasTile(String tile, ArrayList<ReturnPiece> p){
+
+		for(ReturnPiece piece : p){
+			String s = piece.toString();
+			String[] sl = s.split(":");
+			if(sl[0].equalsIgnoreCase(tile)){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	//i intend this method to detect if there is something in its path

@@ -13,18 +13,23 @@ public class Queen extends Piece{
         this.pieceType = pieceType;
     }
 
-    public boolean canMove(String initial, String destination, PieceType type){
-        char fileI = initial.charAt(0);
+    public boolean canMove(String initial, String destination, PieceType type, boolean desthaspiece){
+        int fileI = initial.charAt(0) - '0';
         int rankI = initial.charAt(1) - '0';
-        char fileD = destination.charAt(0);
+        int fileD = destination.charAt(0) - '0';
         int rankD = destination.charAt(1) - '0';
         
-        
-        return true;
+        if(fileI == fileD || rankI == rankD){
+            moved = true;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     
     public void move(String p, String m, ArrayList<ReturnPiece> l){
-    
+        super.move(p, m, l);
     }
 
     public boolean canTake(){
